@@ -12,6 +12,7 @@ import java.util.Optional;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Repository
+@Table
 public interface PostRepository extends JpaRepository<Post, Long> {
 
     Optional<Users> findById(String message);

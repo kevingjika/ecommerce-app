@@ -27,6 +27,7 @@ public class Post {
     @OneToOne(cascade = CascadeType.MERGE)
     private Image image;
     @OneToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name="users")
     private Users users;
     private String address = users.getAddress();
 

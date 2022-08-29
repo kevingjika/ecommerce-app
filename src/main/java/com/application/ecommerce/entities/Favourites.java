@@ -19,7 +19,9 @@ public class Favourites {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinTable(name = "post")
     private Post post;
     @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinTable(name = "users")
     private Users users;
 }
