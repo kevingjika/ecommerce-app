@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {

@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.relational.core.mapping.Table;
 
 public interface FavouritesRepository extends JpaRepository<Favourites,Long> {
     Optional<Users> findById (String message);
