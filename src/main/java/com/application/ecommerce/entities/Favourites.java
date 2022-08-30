@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.awt.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,10 +19,8 @@ import java.time.LocalDateTime;
 public class Favourites {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinTable(name = "post")
+    @ManyToOne(targetEntity = Post.class, cascade = CascadeType.MERGE)
     private Post post;
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinTable(name = "users")
+    @ManyToOne(targetEntity = Users.class, cascade = CascadeType.MERGE)
     private Users users;
 }

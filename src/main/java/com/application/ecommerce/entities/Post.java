@@ -26,15 +26,14 @@ public class Post {
     private boolean deleted;
     @OneToOne(cascade = CascadeType.MERGE)
     private Image image;
-    @OneToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name="users")
+    @OneToMany(targetEntity = Users.class, cascade = CascadeType.ALL)
     private Users users;
+
     private String address = users.getAddress();
 
     public enum Status {
         PENDING,
         APPROVED
     }
-
 
 }
