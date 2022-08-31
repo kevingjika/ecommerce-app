@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
+@RequestMapping("/favourite")
 public class FavouritesController {
 
     @Autowired
@@ -29,32 +30,32 @@ public class FavouritesController {
 
     private static final Logger log = LoggerFactory.getLogger(FavouritesController.class);
 
-    @PostMapping("/create/favourite")
+    @PostMapping("/create")
     public ResponseEntity<Favourites> createFavourite(@RequestBody Favourites favourites, Post post, Users users) throws Exception {
         Favourites savedFavourite = favouritesService.createFavourite(favourites, post, users);
         return new ResponseEntity(savedFavourite, HttpStatus.OK);
     }
 
-    @DeleteMapping("/remove/favourite")
+    @DeleteMapping("/remove")
     public ResponseEntity removeFavourite(@RequestParam(name = "id") long id) throws Exception {
         favouritesService.removeFavourite(id);
         return new ResponseEntity("Remove u krye me sukses.", HttpStatus.OK);
     }
 
 
-    @DeleteMapping("/delete/favourite")
+    @DeleteMapping("/delete")
     public ResponseEntity<Favourites> deleteFavourite(@RequestParam(name = "id") long id) throws Exception {
         favouritesService.deleteFavourite(id);
         return new ResponseEntity("Favourite u fshi me sukses.", HttpStatus.OK);
     }
 
-    @GetMapping ("/search/favourite")
+    @GetMapping ("/search")
     public ResponseEntity<Favourites> searchFavourite(@RequestParam("name") String name) throws Exception {
         List<Favourites> searchedFavourite = favouritesService.searchFavourite(name);
         return new ResponseEntity(searchedFavourite, HttpStatus.OK);
     }
 
-    @GetMapping("/get/favourites")
+    @GetMapping("/get/all")
     public ResponseEntity<Favourites> getAllFavourites() {
         List<Favourites> listOfFavourites = favouritesService.findAll();
         return new ResponseEntity(listOfFavourites, HttpStatus.OK);
