@@ -7,9 +7,9 @@ import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Table
 public interface UsersRepository extends JpaRepository<Users,Long> {
 
-    Optional<Users> findByName (String message);
     Optional<Users> findByUsername (String message);
 
 }

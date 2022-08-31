@@ -17,9 +17,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     Optional<Users> findById(String message);
 
-    @Query("SELECT p FROM Post p WHERE p.post LIKE CONCAT('%',:message, '%') Or p.status LIKE CONCAT ('%', :query, '%')")
+    @Query("SELECT p FROM Post p WHERE (p.title LIKE CONCAT('%',:message, '%') Or p.description LIKE CONCAT ('%', :message, '%')) AND p.deleted = false")
     List <Post> searchPost ( String message);
-    @Query(value = "SELECT * FROM ecommerce.post WHERE status LIKE %:message% Or type LIKE %:message%", nativeQuery = true)
+    @Query(value = "SELECT * FROM ecommerce.post WHERE post.status LIKE %:message%", nativeQuery = true)
     List<Post> searchSpidSQL(@Param("message") String message);
 
 }

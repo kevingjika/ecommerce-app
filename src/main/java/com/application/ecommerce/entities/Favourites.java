@@ -19,6 +19,7 @@ import java.util.List;
 public class Favourites {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     @ManyToOne(targetEntity = Post.class, cascade = CascadeType.MERGE)
     private Post post;
     @ManyToOne(targetEntity = Users.class, cascade = CascadeType.MERGE)

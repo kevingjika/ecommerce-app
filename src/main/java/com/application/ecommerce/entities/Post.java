@@ -25,11 +25,12 @@ public class Post {
     private Status status;
     private boolean deleted;
     @OneToOne(cascade = CascadeType.MERGE)
-    private Image image;
-    @OneToMany(targetEntity = Users.class, cascade = CascadeType.ALL)
+    private Images image;
+
+    @ManyToOne(targetEntity = Users.class, cascade = CascadeType.ALL)
     private Users users;
 
-    private String address = users.getAddress();
+    private String address;
 
     public enum Status {
         PENDING,

@@ -2,7 +2,9 @@ package com.application.ecommerce.services;
 
 import com.application.ecommerce.entities.Post;
 import com.application.ecommerce.entities.Users;
+import com.application.ecommerce.exceptions.NoUsersFoundException;
 import com.application.ecommerce.repository.PostRepository;
+import com.application.ecommerce.exceptions.NoPostFoundException;
 import com.application.ecommerce.repository.UsersRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,7 @@ public class PostService implements PostServiceImpl{
             throw new Exception("User-i qe kerkoni nuk ekziston.");
         } else {
             post.setUsers(findIfUsersExists.get());
+            post.setAddress(findIfUsersExists.get().getAddress());
             findIfUsersExists.get().setCreatedAt(post.getCreatedAt());
         }
         return postRepository.save(post);

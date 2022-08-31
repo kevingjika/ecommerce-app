@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 
 @RestController
+@RequestMapping("/users")
 public class UsersController {
 
     @Autowired
@@ -19,23 +20,25 @@ public class UsersController {
 
     private static final Logger log = LoggerFactory.getLogger(UsersController.class);
 
-    @PostMapping("/create/user")
+    @PostMapping("/create")
     public ResponseEntity<Users> createUser(@RequestBody Users users) throws Exception {
+        log.info(users.getUsername());
         log.info(users.getFirstName());
-        log.info(users.getRole().name());
+        log.info(users.getLastName());
+        log.info(users.getRole() != null ? users.getRole().name() : "failed");
         users.setCreatedAt(LocalDateTime.now());
         Users savedUser = usersService.createUser(users);
         return new ResponseEntity(savedUser, HttpStatus.OK);
     }
 
-    @PutMapping("/edit/user")
+    @PutMapping("/edit")
     public ResponseEntity<Users> editUser(@RequestBody Users users, @RequestParam long id) throws Exception {
         users.setId(id);
         Users updatedUser = usersService.createUser(users);
         return new ResponseEntity(updatedUser, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/user")
+    @DeleteMapping("/delete")
     public ResponseEntity<Users> deleteUser(@RequestParam(name = "id") long id) throws Exception {
         usersService.deleteUser(id);
         return new ResponseEntity("User-i u fshi me sukses.", HttpStatus.OK);
