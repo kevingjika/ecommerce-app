@@ -25,9 +25,10 @@ public class PostService implements PostServiceImpl{
     public Post createPost(Post post) throws Exception{
         post.setStatus(Post.Status.PENDING);
         post.setDeleted(false);
-        Optional<Users> findIfUsersExists = usersRepository.findById(post.getUsers().getId());
+
+        Optional<Users> findIfUsersExists = usersRepository.findById(post.getUsers() != null ? post.getUsers().getId() : 0L);
         if (!findIfUsersExists.isPresent()){
-            throw new Exception("User-i qe kerkoni nuk ekziston.");
+            throw new NoUsersFoundException("User-i qe kerkoni nuk ekziston.");
         } else {
             post.setUsers(findIfUsersExists.get());
             post.setAddress(findIfUsersExists.get().getAddress());
