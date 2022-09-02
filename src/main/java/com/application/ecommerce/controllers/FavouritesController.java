@@ -42,7 +42,6 @@ public class FavouritesController {
         return new ResponseEntity("Remove u krye me sukses.", HttpStatus.OK);
     }
 
-
     @DeleteMapping("/delete")
     public ResponseEntity<Favourites> deleteFavourite(@RequestParam(name = "id") long id) throws Exception {
         favouritesService.deleteFavourite(id);

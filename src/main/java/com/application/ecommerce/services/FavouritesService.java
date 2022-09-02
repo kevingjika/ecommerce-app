@@ -48,8 +48,8 @@ public class FavouritesService implements FavouritesServiceImpl{
     }
 
     public Favourites createFavourite(Favourites favourites) {
-        favourites.getPost();
-        favourites.getUsers();
+        favourites.getPost().getId();
+        favourites.getUsers().getId();
         return favouritesRepository.save(favourites);
     }
 }
