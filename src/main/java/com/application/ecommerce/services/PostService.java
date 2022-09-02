@@ -25,7 +25,6 @@ public class PostService implements PostServiceImpl{
     public Post createPost(Post post) throws Exception{
         post.setStatus(Post.Status.PENDING);
         post.setDeleted(false);
-
         Optional<Users> findIfUsersExists = usersRepository.findById(post.getUsers() != null ? post.getUsers().getId() : 0L);
         if (!findIfUsersExists.isPresent()){
             throw new NoUsersFoundException("User-i qe kerkoni nuk ekziston.");
@@ -37,22 +36,26 @@ public class PostService implements PostServiceImpl{
         return postRepository.save(post);
     }
 
-    public Post editPost(Post post) throws Exception {
-        post.setStatus(Post.Status.PENDING);
-        post.setDeleted(false);
+    public Post editPost(Post post) throws NoPostFoundException {
         Optional<Post> findIfPostExists = postRepository.findById(post.getId());
-        if(!findIfPostExists.isPresent()) {
-            throw new Exception("Post-i nuk ekziston.");
+        if (!findIfPostExists.isPresent()) {
+            throw new NoPostFoundException("Post-i nuk ekziston.");
+        } else if (findIfPostExists.get().getStatus().equals(Post.Status.APPROVED)) {
+            throw new NoPostFoundException("Post-i nuk do te editohet.");
         }
+
         return postRepository.save(findIfPostExists.get());
     }
 
-    public void deletePost(long id, Post post) {
-        post.setDeleted(true);
+    public void deletePost(long id) throws NoPostFoundException {
+        Optional<Post> findIfPostExists = postRepository.findById(id);
+        if(!findIfPostExists.isPresent()) {
+            throw new NoPostFoundException("Post-i nuk ekziston.");
+        }
+        findIfPostExists.get().setDeleted(true);
     }
 
-    public Post changePostStatus(long id, Post post) throws Exception{
-        post.setDeleted(false);
+    public Post changePostStatus(long id) throws Exception{
         Optional<Post> findIfPostExists = postRepository.findById(id);
         if(!findIfPostExists.get().equals(Users.Role.ADMIN.name())) {
             throw new Exception ("Statusi i post-it nuk do te ndryshohet.");

@@ -31,8 +31,8 @@ public class FavouritesController {
     private static final Logger log = LoggerFactory.getLogger(FavouritesController.class);
 
     @PostMapping("/create")
-    public ResponseEntity<Favourites> createFavourite(@RequestBody Favourites favourites, Post post, Users users) throws Exception {
-        Favourites savedFavourite = favouritesService.createFavourite(favourites, post, users);
+    public ResponseEntity<Favourites> createFavourite(@RequestBody Favourites favourites) throws Exception {
+        Favourites savedFavourite = favouritesService.createFavourite(favourites);
         return new ResponseEntity(savedFavourite, HttpStatus.OK);
     }
 

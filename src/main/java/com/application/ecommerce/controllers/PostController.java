@@ -23,7 +23,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/post")
-
 public class PostController {
     @Autowired
     PostService postService;
@@ -48,14 +47,14 @@ public class PostController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Post> deletePost(@RequestParam(name = "id") long id, @RequestBody Post post) throws Exception {
-        postService.deletePost(id, post);
-        return new ResponseEntity("Status-i u ndryshua me sukses.", HttpStatus.OK);
+    public ResponseEntity<Post> deletePost(@RequestParam(name = "id") long id) throws Exception {
+        postService.deletePost(id);
+        return new ResponseEntity("Vlera false e variablit delete u ndryshua ne true me sukses.", HttpStatus.OK);
     }
 
     @PutMapping("/change/status")
-    public ResponseEntity<Post> changePostStatus(@RequestParam long id, @RequestBody Post post) throws Exception {
-        Post updatedPostStatus = postService.changePostStatus(id, post);
+    public ResponseEntity<Post> changePostStatus(@RequestParam long id) throws Exception {
+        Post updatedPostStatus = postService.changePostStatus(id);
         return new ResponseEntity(updatedPostStatus, HttpStatus.OK);
     }
 

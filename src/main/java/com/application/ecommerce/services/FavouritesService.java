@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.PreRemove;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class FavouritesService implements FavouritesServiceImpl{
         this.usersRepository = usersRepository;
         this.favouritesRepository = favouritesRepository;
     }
-    @PreRemove
+    @Transactional
     public void removeFavourite (long id) throws Exception {
         return;
     }
@@ -46,7 +47,7 @@ public class FavouritesService implements FavouritesServiceImpl{
         return favouritesRepository.findAll();
     }
 
-    public Favourites createFavourite(Favourites favourites, Post post, Users users) {
+    public Favourites createFavourite(Favourites favourites) {
         favourites.getPost();
         favourites.getUsers();
         return favouritesRepository.save(favourites);

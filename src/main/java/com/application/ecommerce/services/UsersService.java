@@ -16,7 +16,7 @@ public class UsersService {
         this.usersRepository = usersRepository;
     }
 
-    public Users createUser (Users users) throws Exception {
+    public Users createUser (Users users) throws NoUsersFoundException {
         users.setRole(Users.Role.USER);
         Optional<Users> findIfUserExists = usersRepository.findByUsername(users.getUsername());
         if(findIfUserExists.isPresent()){
@@ -25,18 +25,18 @@ public class UsersService {
         return usersRepository.save(users);
     }
 
-    public void editUser(long id) throws Exception {
+    public void editUser(long id) throws NoUsersFoundException {
         Optional<Users>  findIfUsersExists = usersRepository.findById(id);
         if(!findIfUsersExists.isPresent()) {
-            throw new Exception("User-i nuk ekziston.");
+            throw new NoUsersFoundException("User-i nuk ekziston.");
         }
         usersRepository.save(findIfUsersExists.get());
     }
 
-    public void deleteUser(long id) throws Exception{
+    public void deleteUser(long id) throws NoUsersFoundException{
         Optional<Users> findIfUsersExists = usersRepository.findById(id);
         if(!findIfUsersExists.isPresent()) {
-            throw new Exception ("User-i nuk do te fshihet.");
+            throw new NoUsersFoundException("User-i nuk do te fshihet.");
         }
         usersRepository.deleteById(id);
     }
