@@ -54,7 +54,7 @@ public class FavouritesController {
         return new ResponseEntity(searchedFavourite, HttpStatus.OK);
     }
 
-    @GetMapping("/get/all")
+    @GetMapping("/get/favourites")
     public ResponseEntity<Favourites> getAllFavourites() {
         List<Favourites> listOfFavourites = favouritesService.findAll();
         return new ResponseEntity(listOfFavourites, HttpStatus.OK);
