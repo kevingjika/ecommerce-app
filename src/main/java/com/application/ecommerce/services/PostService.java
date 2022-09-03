@@ -67,7 +67,7 @@ public class PostService implements PostServiceImpl{
 
     @Override
     public List<Post> searchPost(String message) {
-        List<Post> findIfPostExists = postRepository.searchSpidSQL(message);
+        List<Post> findIfPostExists = postRepository.searchPostSQL(message);
         if(!findIfPostExists.isEmpty()) {
             return findIfPostExists;
         }
