@@ -45,12 +45,6 @@ public class PostController {
     public ResponseEntity<Post> editPost(@RequestBody Post post, @RequestParam long id) throws Exception {
         post.setId(id);
         Post updatedPost = postService.editPost(post);
-        try {
-            FileWriter myWriter = new FileWriter("javalogs.txt");
-            myWriter.write(Long.toString(updatedPost.getId()));
-            myWriter.close();
-        } catch (IOException e) {
-        }
         return new ResponseEntity(updatedPost, HttpStatus.OK);
     }
 
