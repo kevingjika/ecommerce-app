@@ -73,7 +73,7 @@ public class PostController {
     }
 
     @GetMapping("/get/all")
-    public ResponseEntity<Post> getAllPosts() {
+    public ResponseEntity<Post> getAllPosts(@RequestParam long id) throws Exception {
         List<Post> listOfPosts = postService.findAll();
         return new ResponseEntity(listOfPosts, HttpStatus.OK);
     }
