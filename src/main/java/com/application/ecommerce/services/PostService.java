@@ -8,6 +8,7 @@ import com.application.ecommerce.exceptions.NoPostFoundException;
 import com.application.ecommerce.repository.UsersRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
