@@ -28,7 +28,7 @@ public class PostService implements PostServiceImpl{
         post.setDeleted(false);
         Optional<Users> findIfUsersExists = usersRepository.findById(post.getUsers() != null ? post.getUsers().getId() : 0L);
         if (!findIfUsersExists.isPresent()){
-            throw new NoUsersFoundException("User-i qe kerkoni nuk ekziston.");
+            throw new Exception("User-i qe kerkoni nuk ekziston.");
         } else {
             post.setUsers(findIfUsersExists.get());
             post.setAddress(findIfUsersExists.get().getAddress());
@@ -37,21 +37,21 @@ public class PostService implements PostServiceImpl{
         return postRepository.save(post);
     }
 
-    public Post editPost(Post post) throws NoPostFoundException {
+    public Post editPost(Post post) throws Exception {
         Optional<Post> findIfPostExists = postRepository.findById(post.getId());
         if (!findIfPostExists.isPresent()) {
-            throw new NoPostFoundException("Post-i nuk ekziston.");
+            throw new Exception("Post-i nuk ekziston.");
         } else if (findIfPostExists.get().getStatus().equals(Post.Status.APPROVED)) {
-            throw new NoPostFoundException("Post-i nuk do te editohet.");
+            throw new Exception("Post-i nuk do te editohet.");
         }
 
         return postRepository.save(findIfPostExists.get());
     }
 
-    public void deletePost(long id) throws NoPostFoundException {
+    public void deletePost(long id) throws Exception {
         Optional<Post> findIfPostExists = postRepository.findById(id);
         if(!findIfPostExists.isPresent()) {
-            throw new NoPostFoundException("Post-i nuk ekziston.");
+            throw new Exception("Post-i nuk ekziston.");
         }
         findIfPostExists.get().setDeleted(true);
     }
