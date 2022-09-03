@@ -6,6 +6,7 @@ import com.application.ecommerce.entities.Favourites;
 import com.application.ecommerce.repository.FavouritesRepository;
 import com.application.ecommerce.repository.PostRepository;
 import com.application.ecommerce.repository.UsersRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

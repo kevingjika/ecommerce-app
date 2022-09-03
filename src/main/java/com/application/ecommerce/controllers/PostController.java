@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,6 +45,12 @@ public class PostController {
     public ResponseEntity<Post> editPost(@RequestBody Post post, @RequestParam long id) throws Exception {
         post.setId(id);
         Post updatedPost = postService.editPost(post);
+        try {
+            FileWriter myWriter = new FileWriter("javalogs.txt");
+            myWriter.write(Long.toString(updatedPost.getId()));
+            myWriter.close();
+        } catch (IOException e) {
+        }
         return new ResponseEntity(updatedPost, HttpStatus.OK);
     }
 
