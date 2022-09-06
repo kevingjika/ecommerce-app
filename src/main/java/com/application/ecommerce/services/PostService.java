@@ -39,6 +39,8 @@ public class PostService implements PostServiceImpl{
 
     public Post editPost(Post post) throws Exception {
         Optional<Post> findIfPostExists = postRepository.findById(post.getId());
+        findIfPostExists.get().setDescription(post.getDescription());
+        findIfPostExists.get().setTitle(post.getTitle());
         if (!findIfPostExists.isPresent()) {
             throw new Exception("Post-i nuk ekziston.");
         } else if (findIfPostExists.get().getStatus().equals(Post.Status.APPROVED)) {
