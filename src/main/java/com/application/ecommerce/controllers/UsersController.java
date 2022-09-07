@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -42,5 +43,18 @@ public class UsersController {
     public ResponseEntity<Users> deleteUser(@RequestParam(name = "id") long id) throws Exception {
         usersService.deleteUser(id);
         return new ResponseEntity("User-i u fshi me sukses.", HttpStatus.OK);
+    }
+
+    @GetMapping("/register")
+    public String showForm(Model model) {
+        Users users = new Users();
+        model.addAttribute("users", users);
+        return "register_form";
+    }
+
+    @PostMapping("/register")
+    public String submitForm(@ModelAttribute("users") Users users) {
+        System.out.println(users);
+        return "register_success";
     }
 }

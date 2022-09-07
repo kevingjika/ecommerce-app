@@ -29,6 +29,18 @@ public class Users {
     private LocalDateTime createdAt;
     private boolean deleted;
 
+    @Override
+    public String toString() {
+        return "Users{" +
+                "username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address +
+                '}';
+    }
+
     public enum Role {
         USER,
         ADMIN
