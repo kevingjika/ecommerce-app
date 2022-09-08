@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="ISO-8859-1">
     <title>User Registration</title>
@@ -21,28 +21,29 @@
         width : 200px;
 
         }
+
     </style>
 </head>
 <body>
-    <div align = "center">
-        <h1>User Registration</h1>
-        <form action="http://localhost:63342/ecommerce/templates/register_success.html?_ijt=3gjrct94o54dkpviel4v52tv4j&_ij_reload=RELOAD_ON_SAVE" th:action="@{/register}" th:object="${user}" method="post">
-            <label>Username : </label>
-            <input type = "text" th:field="*{username}"/><br/><br/>
-            <label>First name : </label>
-            <input type = "text" th:field="*{firstname}"/><br/><br/>
-            <label>Last name : </label>
-            <input type = "text" th:field="*{lastname}"/><br/><br/>
-            <label>Email : </label>
-            <input type = "text" th:field="*{email}"/><br/><br/>
-            <label>Password : </label>
-            <input type = "password" th:field="*{password}"/><br/><br/>
-            <label>Address : </label>
-            <input type = "text" th:field="*{address}"/><br/><br/><br/>
-            <input type="submit" value="Register">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            <input type="reset" value="Reset"><br/><br/>
-            <a href="http://localhost:63342/ecommerce/templates/index.html?_ijt=p3ea58653au3mqdbdm0vrsqelm&_ij_reload=RELOAD_ON_SAVE">Main Page</a>
-        </form>
-    </div>
+<div align="center">
+    <h1>User Registration</h1>
+    <form action="http://localhost:63342/ecommerce/templates/register_success.html?_ijt=3gjrct94o54dkpviel4v52tv4j&_ij_reload=RELOAD_ON_SAVE" method="post">
+        <label>Username : </label>
+        <input type="text" id="username" name="username"/><br/><br/>
+        <label>First name : </label>
+        <input type="text" id="firstname" name="firstname"/><br/><br/>
+        <label>Last name : </label>
+        <input type="text" id="lastname" name="lastname"/><br/><br/>
+        <label>Email : </label>
+        <input type="text" id="email" name="email"/><br/><br/>
+        <label>Password : </label>
+        <input type="password" id="password" name="password"/><br/><br/>
+        <label>Address : </label>
+        <input type="text" id="address" name="address"/><br/><br/><br/>
+        <input type="submit" value="Register">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <input type="reset" value="Reset"><br/><br/>
+        <a href="http://localhost:63342/ecommerce/templates/index.html?_ijt=p3ea58653au3mqdbdm0vrsqelm&_ij_reload=RELOAD_ON_SAVE">Main Page</a>
+    </form>
+</div>
 </body>
 </html>
