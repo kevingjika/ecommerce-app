@@ -26,7 +26,7 @@
 <body>
     <div align = "center">
         <h1>User Registration</h1>
-        <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+        <form action="http://localhost:63342/ecommerce/templates/register_success.html?_ijt=3gjrct94o54dkpviel4v52tv4j&_ij_reload=RELOAD_ON_SAVE" th:action="@{/register}" th:object="${user}" method="post">
             <label>Username : </label>
             <input type = "text" th:field="*{username}"/><br/><br/>
             <label>First name : </label>
